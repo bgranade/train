@@ -68,3 +68,32 @@ $("#formID").on("submit", function (event) {
     minutesRemaining = tFrequency - tRemainder;
     console.log("Working");
   }
+
+  var newRow = $("<tr>");
+  newRow.addClass("row-" + index);
+  var cell1 = $("<td>").append(updateButton);
+  var cell2 = $("<td>").text(childSnapshot.val().name);
+  var cell3 = $("<td>").text(childSnapshot.val().destination);
+  var cell4 = $("<td>").text(childSnapshot.val().frequency);
+  var cell5 = $("<td>").text(nextTrain);
+  var cell6 = $("<td>").text(minutesRemaining);
+  var cell7 = $("<td>").append(removeButton);
+
+  newRow
+    .append(cell1)
+    .append(cell2)
+    .append(cell3)
+    .append(cell4)
+    .append(cell5)
+    .append(cell6)
+    .append(cell7);
+
+ $("#tableContent").append(newRow);
+
+ index++;
+  
+}, function (error) {
+
+  alert(error.code);
+
+});
