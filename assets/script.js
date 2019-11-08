@@ -97,3 +97,20 @@ $("#formID").on("submit", function (event) {
   alert(error.code);
 
 });
+
+function removeRow () {
+    $(".row-" + $(this).attr("data-index")).remove();
+    database.ref().child($(this).attr("data-key")).remove();
+  };
+  
+  function editRow () {
+    $(".row-" + $(this).attr("data-index")).children().eq(1).html("<textarea class='newName'></textarea>");
+    $(".row-" + $(this).attr("data-index")).children().eq(2).html("<textarea class='newDestination'></textarea>");
+    $(".row-" + $(this).attr("data-index")).children().eq(3).html("<textarea class='newFrequency' type='number'></textarea>");
+    $(this).toggleClass("updateButton").toggleClass("submitButton");
+  };
+  
+  function submitRow () {
+    var newName = $(".newName").val().trim();
+    var newDestination = $(".newDestination").val().trim();
+    var newFrequency = $(".newFrequency").val().trim();
