@@ -57,3 +57,14 @@ $("#formID").on("submit", function (event) {
   var nextTRain = moment().add(minutesRemaining, "minutes").format ("hh:mm A");
   var beforeCalc = moment(firstTrain).diff(currentTimeCalc, "minutes");
   var beforeMinutes = Math.ceil(moment.duration(beforeCalc).asMinutes());
+
+  if ((currentTimeCalc - firstTrain) < 0) {
+    nextTrain = childSnapshot.val().firstTime;
+    console.log("Before First Train");
+    minutesRemaining = beforeMinutes;
+  }
+  else {
+    nextTrain = moment().add(minutesRemaining, "minutes").format("hh:mm A");
+    minutesRemaining = tFrequency - tRemainder;
+    console.log("Working");
+  }
