@@ -114,3 +114,17 @@ function removeRow () {
     var newName = $(".newName").val().trim();
     var newDestination = $(".newDestination").val().trim();
     var newFrequency = $(".newFrequency").val().trim();
+
+    database.ref().child($(this).attr("data-key")).child("name").set(newName);
+    database.ref().child($(this).attr("data-key")).child("destination").set(newDestination);
+    database.ref().child($(this).attr("data-key")).child("frequency").set(newFrequency);
+  
+    $(".row-" + $(this).attr("data-index")).children().eq(1).html(newName);
+    $(".row-" + $(this).attr("data-index")).children().eq(2).html(newDestination);
+    $(".row-" + $(this).attr("data-index")).children().eq(3).html(newFrequency);
+    $(this).toggleClass("updateButton").toggleClass("submitButton");
+  };
+  
+  $(document).on("click", ".removeButton", removeRow);
+  $(document).on("click", ".updateButton", editRow);
+  $(document).on("click", ".submitButton", submitRow);
